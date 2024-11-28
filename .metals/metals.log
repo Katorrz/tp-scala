@@ -1,0 +1,22 @@
+2024.11.28 13:51:11 INFO  Started: Metals version 1.4.1 in folders '/home/cytech/Desktop/Cloud data/actors/tp-actors-cytech' for client Visual Studio Code 1.95.1.
+2024.11.28 13:51:13 WARN  Flyway upgrade recommended: H2 2.3.232 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.224.
+2024.11.28 13:51:13 INFO  Attempting to connect to the build server...
+2024.11.28 13:51:13 INFO  Found a Bloop server running
+2024.11.28 13:51:13 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/cytech/Desktop/Cloud data/actors/tp-actors-cytech/.metals/bsp.trace.json or /home/cytech/.cache/metals/bsp.trace.json
+2024.11.28 13:51:13 INFO  time: Connected to build server in 0.35s
+2024.11.28 13:51:13 INFO  Connected to Build server: Bloop v2.0.5
+2024.11.28 13:51:13 INFO  running doctor check
+2024.11.28 13:51:13 INFO  java targets: root-test, root
+Nov 28, 2024 1:51:17 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2024.11.28 13:51:17 WARN  Could not find java sources in /usr/lib/jvm/src.zip, /usr/lib/jvm/lib/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/lib/src.zip. Java symbols will not be available.
+2024.11.28 13:51:21 WARN  Could not find java sources in /usr/lib/jvm/src.zip, /usr/lib/jvm/lib/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/src.zip, /usr/lib/jvm/java-21-openjdk-amd64/lib/src.zip. Java symbols will not be available.
+2024.11.28 13:51:21 INFO  time: indexed workspace in 7.59s
+2024.11.28 13:51:21 INFO  compiling root (1 scala source)
+Nov 28, 2024 1:51:22 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2024.11.28 13:51:24 INFO  time: compiled root in 2.48s
+2024.11.28 13:51:24 INFO  compiling root (1 scala source)
+2024.11.28 13:51:24 WARN  Could not load snapshot text for /home/cytech/Desktop/Cloud data/actors/tp-actors-cytech/src/main/scala/RoomActor.scala
+2024.11.28 13:51:24 WARN  Could not load snapshot text for /home/cytech/Desktop/Cloud data/actors/tp-actors-cytech/src/main/scala/RoomActor.scala
+2024.11.28 13:51:24 INFO  time: compiled root in 0.83s
