@@ -1,3 +1,16 @@
+file://<HOME>/Desktop/Cloud%20data/actors/tp-actors-cytech/src/main/scala/routes.scala
+### java.lang.IndexOutOfBoundsException: -1
+
+occurred in the presentation compiler.
+
+presentation compiler configuration:
+
+
+action parameters:
+offset: 3457
+uri: file://<HOME>/Desktop/Cloud%20data/actors/tp-actors-cytech/src/main/scala/routes.scala
+text:
+```scala
 package fr.cytech.icc
 
 import java.time.OffsetDateTime
@@ -14,7 +27,6 @@ import org.apache.pekko.http.scaladsl.model.StatusCodes
 import org.apache.pekko.http.scaladsl.server.{ Directives, Route }
 import org.apache.pekko.util.Timeout
 import spray.json.*
-import scala.collection.SortedSet
 
 case class PostInput(author: String, content: String)
 
@@ -118,41 +130,15 @@ case class Controller(
 
   private def listRooms() = ???
 
-  private def getRoom(roomId: String) = 
-            rooms
-      .ask[Option[ActorRef[Message]]](ref => GetRoom(roomId, ref))
-      .flatMap {
-        case Some(roomActorRef) => roomActorRef.ask[Option[Post]](ref => Message.getR)// j'ai pas de GetRoom 
-        case None               => Future.successful(None)
-      }
-      .map {
-        case Some(post) =>
-          StatusCodes.OK -> post.output(roomId)
-        case None =>
-          StatusCodes.NotFound
-      }
+  private def getRoom(roomId: String) = ???
 
-
-  private def createPost(roomId: String, input: PostInput) = 
-        rooms
-      .ask[Option[ActorRef[Message]]](ref => GetRoom(roomId, ref))
-      .flatMap {
-        case Some(roomActorRef) => roomActorRef.ask[Option[Post]](ref => Message.CreatePost(input.author, input.content))
-        case None               => Future.successful(None)
-      }
-      .map {
-        case Some(post) =>
-          StatusCodes.OK -> post.output(roomId)
-        case None =>
-          StatusCodes.NotFound
-      }
-
+  private def createPost(roomId: String, input: PostInput) = ???
 
   private def listPosts(roomId: String) = 
         rooms
       .ask[Option[ActorRef[Message]]](ref => GetRoom(roomId, ref))
       .flatMap {
-        case Some(roomActorRef) => roomActorRef.ask[Option[Post]](ref => Message.ListPosts())// ici c'est chaud
+        case Some(roomActorRef) => roomActorRef.ask[Option[Post]](ref => Message.ListPosts(ActorRef[@@])
         case None               => Future.successful(None)
       }
       .map {
@@ -192,3 +178,23 @@ case class Controller(
           StatusCodes.NotFound
       }
 }
+
+```
+
+
+
+#### Error stacktrace:
+
+```
+scala.collection.LinearSeqOps.apply(LinearSeq.scala:129)
+	scala.collection.LinearSeqOps.apply$(LinearSeq.scala:128)
+	scala.collection.immutable.List.apply(List.scala:79)
+	dotty.tools.dotc.util.Signatures$.applyCallInfo(Signatures.scala:244)
+	dotty.tools.dotc.util.Signatures$.computeSignatureHelp(Signatures.scala:104)
+	dotty.tools.dotc.util.Signatures$.signatureHelp(Signatures.scala:88)
+	dotty.tools.pc.SignatureHelpProvider$.signatureHelp(SignatureHelpProvider.scala:47)
+	dotty.tools.pc.ScalaPresentationCompiler.signatureHelp$$anonfun$1(ScalaPresentationCompiler.scala:422)
+```
+#### Short summary: 
+
+java.lang.IndexOutOfBoundsException: -1
