@@ -137,5 +137,17 @@ case class Controller(
           StatusCodes.NotFound
       }
 
-  private def getPost(roomId: String, messageId: String) = ???
+  private def getPost(roomId: String, messageId: String) = 
+    rooms
+      .ask[Option[ActorRef[Message]]](ref => GetRoom(roomId, ref))
+      .flatMap {
+        case Some(roomActorRef) => roomActorRef.ask[Option[Post]](ref => Message.GetPost(UUID.fromString(messageId), ref))
+        case None               => Future.successful(None)
+      }
+      .map {
+        case Some(post) =>
+          StatusCodes.OK -> post.output(roomId)
+        case None =>
+          StatusCodes.NotFound
+      }
 }
