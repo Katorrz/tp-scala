@@ -122,7 +122,7 @@ case class Controller(
             rooms
       .ask[Option[ActorRef[Message]]](ref => GetRoom(roomId, ref))
       .flatMap {
-        case Some(roomActorRef) => roomActorRef.ask[Option[Post]](ref => Message.getR)// j'ai pas de GetRoom 
+        case Some(roomActorRef) => roomActorRef.ask[Option[Post]](ref => Message.getR)// j'ai pas de GetRoom je sais pas
         case None               => Future.successful(None)
       }
       .map {
@@ -152,12 +152,12 @@ case class Controller(
         rooms
       .ask[Option[ActorRef[Message]]](ref => GetRoom(roomId, ref))
       .flatMap {
-        case Some(roomActorRef) => roomActorRef.ask[Option[Post]](ref => Message.ListPosts())// ici c'est chaud
+        case Some(roomActorRef) => roomActorRef.ask[[SortedSet[Post]]](ref => Message.ListPosts())
         case None               => Future.successful(None)
       }
       .map {
         case Some(post) =>
-          StatusCodes.OK -> post.output(roomId)
+          StatusCodes.OK
         case None =>
           StatusCodes.NotFound
       }

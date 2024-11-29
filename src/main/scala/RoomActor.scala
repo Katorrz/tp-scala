@@ -30,7 +30,7 @@ case class RoomActor(name: String) {
       case Message.LatestPost(replyTo) =>
         replyTo.!(posts.lastOption)
         Behaviors.same
-      case Message.GetPost(id, replyTo) => ???
+      case Message.GetPost(id, replyTo) => 
         replyTo.!(posts.find(p=> p.id == id))
         Behaviors.same
 
